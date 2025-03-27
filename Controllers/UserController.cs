@@ -100,4 +100,21 @@ public class UserController : Controller
         userlist.Remove(user);
         return RedirectToAction(nameof(Index));
     }
+/*
+    // GET: User/Search
+    public ActionResult Search(string query)
+    {
+        if (string.IsNullOrWhiteSpace(query))
+        {
+            return View(new List<User>()); // Return an empty list if no query is provided
+        }
+
+        var results = userlist
+            .Where(u => u.Name.Contains(query, StringComparison.OrdinalIgnoreCase) || 
+                        u.Email.Contains(query, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
+        return View(results);
+    }
+*/
 }

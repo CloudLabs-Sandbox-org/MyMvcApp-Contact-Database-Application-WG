@@ -1,0 +1,39 @@
+@model IEnumerable<MyMvcApp.Models.User>
+
+<h2>Search Users</h2>
+
+<form method="get" asp-action="Search">
+    <input type="text" name="query" placeholder="Search by name or email" value="@ViewContext.HttpContext.Request.Query["query"]" />
+    <button type="submit">Search</button>
+</form>
+
+@if (!Model.Any())
+{
+    <p>No results found.</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@user.Id">Details</a> |
+                        <a asp-action="Edit" asp-route-id="@user.Id">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@user.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
